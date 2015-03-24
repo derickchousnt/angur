@@ -1,0 +1,91 @@
+<html>
+<head>
+	<script src="./angular.js"></script>
+	<script src="./module.js"></script>
+	<script src="./another-controller.js"></script>
+	<link rel="stylesheet" href="./bootstrap.min.css">
+
+</head>
+<body ng-app="app">
+  <!-- Other examples to be inserted here. -->
+	<ol ng-controller="ItemsController">
+  		<li ng-repeat="item in items" ng-bind="item.name"></li>
+  		<li ng-bind="item.name"></li>
+	</ol>
+
+	<div ng-controller="ItemsController">
+	  <div ng-repeat="item in items">
+	     {{$index + 1}}. {{item.name}}
+	  </div>
+	</div>
+
+	<table class="table table-condensed">
+	  <tr ng-repeat="(propertyName, propertyValue) in {b: 'two', a: 1.0, c: 3}">
+	    <td ng-bind="propertyName"></td>
+	    <td ng-bind="propertyValue"></td>
+	  </tr>
+	</table>
+	
+
+
+	<div ng-controller="ItemsController2">
+	  <ol>
+	    <li ng-repeat="item in items">
+	      {{item.name}}
+	      <ol>
+	        <li ng-repeat="item in item.items">
+	          {{item.name}}
+	        </li>
+	      </ol>
+	    </li>
+	  </ol>
+	</div>
+
+	<div ng-controller="ItemsController2">
+	  <div ng-repeat="item in items" ng-init="outerCount = $index">
+	    {{outerCount + 1}}. {{item.name}}
+	    <div ng-repeat="item in item.items">
+	       {{outerCount + 1}}.{{$index + 1}}. {{item.name}}
+	    </div>
+	  </div>
+	</div>
+
+<!-- loop: $first, $middle, $last, $even, and $odd -->
+	<ol>
+	  <li ng-repeat="val in [1,2,3,4,5]">
+	    <span class="label label-default"
+	          ng-class="{'label-success': $middle}">
+	      {{val}}
+	    </span>
+	  </li>
+	</ol>
+
+	<ol>
+	  <!-- Invalid code! Duplicate element error, because '1' is repeated! -->
+	  <li ng-repeat="val in [{name: 1},{name: 2},{name: 1}]" ng-bind="val.name"></li>
+	</ol>
+
+	<ol>
+	<!-- use track by instruction -->
+	  <li ng-repeat="val in [1,2,1] track by $index" ng-bind="val"></li>
+	</ol>
+
+	<div ng-controller="ItemsController3">
+	  <h4 ng-pluralize count="items.length"
+	      when="{'one': '1 item', 'other': '{} items'}">
+	  </h4>
+	  <table class="table table-condensed">
+	    <tr ng-repeat="item in items">
+	      <td ng-bind="item.name"></td>
+	      <td>
+	        <button class="btn btn-xs btn-default" ng-click="destroy(item)">
+	          destroy
+	        </button>
+	        <!-- testestest -->
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+
+</body>
+</html>

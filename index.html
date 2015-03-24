@@ -1,0 +1,118 @@
+<html>
+<head>
+<script src="./angular.js"></script>
+<script src="./module.js"></script>
+<script src="./empty-controller.js"></script>
+</head>
+<body ng-app="app">
+  <!-- Other examples to be inserted here. -->
+  	<p> hello world </p>
+  	<p ng-controller="EmptyController"></p>
+  	<p ng-controller="MessageController as controller">{{message}}</p>
+  	<p ng-controller="CountController">There are {{count()}} months in a year.</p>
+
+  	<p ng-controller="AdditionController">
+  		<select ng-model="operand1" ng-options="x for x in options"></select>
+  + <select ng-model="operand2" ng-options="x for x in options"></select>
+  = {{add()}}</p>
+
+  <p ng-controller="Addition2Controller">
+  {{add(number, 2)}} is not the same as {{add(number, "2")}}
+  <br>
+  2 + 2 + 2 + 2 = {{add(2, add(2, add(2, 2)))}}
+</p>
+
+<div ng-controller="AuthController">
+  <p>
+    The secret code is
+    <span ng-show="authorized">0123</span>
+    <span ng-hide="authorized">not for you to see</span>
+  </p>
+  <input class="btn btn-xs btn-default" type="button" value="toggle" ng-click="toggle()">
+</div>
+
+
+<p ng-controller="NameController">
+  {{name}}
+</p>
+
+<div>
+  <p>
+    Outside the scope: {{name}}
+  </p>
+  <div ng-controller="NameController">
+    <p>
+      Inside the scope: {{name}}
+    </p>
+  </div>
+</div>
+
+
+<p ng-controller="NameController">
+  {{name}}
+</p>
+<p ng-controller="SecondNameController">
+  {{name}}
+</p>
+
+<div ng-controller="NameController">
+  <p>
+    {{name}}
+  </p>
+  <p ng-controller="SecondNameController">
+    {{name}}
+  </p>
+</div>
+
+<div ng-controller="SecondNameController">
+  <p>
+    {{name}}
+  </p>
+  <p ng-controller="NameController">
+    {{name}}
+  </p>
+</div>
+
+<div ng-controller="NameController">
+  <p>
+    {{name}} and {{childName}}
+  </p>
+  <p ng-controller="ChildController">
+    {{name}} and {{childName}}
+  </p>
+    <input type='text' ng-model='name'>
+</div>
+
+
+<div ng-controller="InfoController">
+  <p>
+    {{info.name}} and {{info.childName}}
+    <br>
+    <input type='text' ng-model='info.name'>
+  </p>
+  <p ng-controller="ChildInfoController">
+    {{info.name}} and {{info.childName}}
+    <br>
+    <input type='text' ng-model='info.childName'>
+
+  </p>
+</div>
+
+
+<p ng-controller="SumController">
+  <select ng-model="newValue" ng-options="n for n in [1,2,3,4,5]"></select>
+  <input type="button" value="Add" ng-click="add()">
+  The sum of {{values}} is {{sum}}.
+</p>
+
+
+<div ng-controller="EscapeController">
+  <input type="text" ng-model="message">
+  is bound to
+  "<strong ng-bind="message"></strong>".
+  Press <code>esc</code> to clear it!
+</div>
+
+</body>
+
+</html>
