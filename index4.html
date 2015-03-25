@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<script src="./angular.js"></script>
+		<script src="./module2.js"></script>	
+		<link rel="stylesheet" href="./bootstrap.min.css">
+	</head>
+	<body ng-app="app">
+
+		<table ng-init="price = 100">
+		  <tr>
+		    <td>Full price:</td>
+		    <td ng-bind="price | currency"></td>
+		  </tr>
+		  <tr>
+		    <td>Sale price:</td>
+		    <td discount="price"></td>
+		  </tr>
+		</table>
+
+		<br>
+		<ul word-list="we love templates is 4 a number"></ul>
+		<br>
+		<ul word-listed="external templates rock"></ul>
+		<br>
+			The message is <span message1 ng-controller="MessageController"></span>.
+		<br>
+			The message is <span message2></span>.
+		<br>
+			<message2></message2>
+		<br>
+		
+	</body>
+</html>

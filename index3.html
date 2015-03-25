@@ -1,0 +1,133 @@
+<html>
+	<head>
+		<script src="./angular.js"></script>
+		<script src="./module.js"></script>
+		<script src="./module_controller.js"></script>
+		<script src="./angular-animate.js"></script>
+		<link rel="stylesheet" href="./bootstrap.min.css">
+		<link rel="stylesheet" href="./ng-animate.css">
+	</head>
+	<body ng-app="app">
+		<!-- Other examples to be inserted here. -->
+
+		<p ng-controller="MessageController">
+			{{message}}
+		</p>
+		<p ng-controller="AnotherMessageController">
+		  {{message}}
+		</p>
+
+		<input type="checkbox" ng-model="showMessage">
+			Check the box to show the message
+			<h2 ng-show="showMessage">
+			  The secret message.
+			</h2>
+
+
+		<p ng-controller="LocaleController">
+		  Your locale is <strong ng-bind="locale"></strong>
+		</p>
+
+		<table ng-controller="PriceController">
+		  <tr>
+		    <td>Full price:</td>
+		    <td>{{fullPrice}}</td>
+		  </tr>
+		  <tr>
+		    <td>Discount price:</td>
+		    <td>{{discountPrice}}</td>
+		  </tr>
+		</table>
+
+
+		<p ng-controller="ScoreController">
+		  Score: {{score.getPoints()}}
+		</p>
+		<p ng-controller="ScoreController">
+		  <button ng-click="increment()">Increment</button>
+		</p>
+
+		<!-- angular filter -->
+		<br>
+		<p>{{"AngularJS" | lowercase}}</p>
+		<p>{{"AngularJS" | lowercase | uppercase }}</p>
+		<p>{{1000.12345 | number:4}}</p>
+		<p>{{1999.995 | currency}}</p>
+		<p>{{1999.995 | currency:'yen'}}</p>
+
+		<p ng-controller="DateController">
+			{{now | date}}
+		</p>
+		<p ng-controller="DateController">
+		  {{now | date:'yyyy-MM-dd HH:mm:ss Z'}}
+		</p>
+
+		<br>
+		<ol ng-controller="ItemsController">
+		  <li ng-repeat="item in items | orderBy:'position'">
+		     {{item.name}}
+		  </li>
+		</ol>
+		<br>
+		<ol ng-controller="ItemsController">
+		  <li ng-repeat="item in items | orderBy:'-position'">
+		     {{item.name}}
+		  </li>
+		</ol>
+		<br>
+		<ol ng-controller="ItemsController">
+		  <li ng-repeat="item in items | orderBy:'position':true">
+		     {{item.name}}
+		  </li>
+		</ol>
+		<br>
+		<ol ng-controller="ItemsController">
+		  <li ng-repeat="item in items | orderBy:'position':false">
+		     {{item.name}}
+		  </li>
+		</ol>
+
+		<br>
+		<ol ng-controller="ItemsController">
+		  <li ng-repeat="item in items | orderBy:'-price' | limitTo:2">
+		     {{item.price | currency}}
+		  </li>
+		</ol>			
+
+		<br>
+
+		Filter: <input type="text" ng-model="q">
+		<table class="table table-condensed" ng-controller="ItemsController">
+		  <thead>
+		    <tr><th>name</th><th>color</th><th>price</th></tr>
+		  <thead>
+		  <tbody>
+		    <tr ng-repeat="item in items | filter:q">
+		      <td ng-bind="item.name"></td>
+		      <td ng-bind="item.color"></td>
+		      <td ng-bind="item.price | currency"></td>
+		    </tr>
+		  <tbody>
+		</table>
+
+		<br>
+
+		<p ng-controller="ItemsController">
+		  <!-- Invalid code! -->
+		  {{items | filter:{color:'red'}.length}} red items
+		</p>	
+
+		<br>
+		<p ng-controller="FilteredItemsController">
+		  {{redItemsCount}} red items
+		</p>
+
+		<br>
+		<strong ng-bind="'hello' | smiley"></strong>
+
+		<br>
+		<p>
+  The app says <strong ng-bind="'greeting' | localize"></strong>.
+</p>
+	</body>
+</html>
